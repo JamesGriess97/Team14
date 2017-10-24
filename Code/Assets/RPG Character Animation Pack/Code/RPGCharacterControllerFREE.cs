@@ -18,7 +18,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour{
 	public Vector3 targetDashDirection;
 	public Camera sceneCamera;
 	public bool useNavMesh = false;
-	private NavMeshAgent agent;
+	private UnityEngine.AI.NavMeshAgent agent;
 	private float navMeshSpeed;
 	public Transform goal;
 
@@ -92,7 +92,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour{
 		//set the animator component
 		animator = GetComponentInChildren<Animator>();
 		rb = GetComponent<Rigidbody>();
-		agent = GetComponent<NavMeshAgent>();
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 		agent.enabled = false;
 	}
 
