@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
     public Transform playerCam, character, centerPoint;
+    private Rigidbody rb;
 
     private float mouseX, mouseY;
     public float mouseSensitivity = 10f;
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -35,17 +36,23 @@ public class PlayerController : MonoBehaviour {
         moveLR = Input.GetAxis("Horizontal") * moveSpeed;
 
         Vector3 movement = new Vector3(moveLR, 0, moveFB);
+
         movement = character.rotation * movement;
+
         character.GetComponent<CharacterController>().Move(movement * Time.deltaTime);
+
         centerPoint.position = new Vector3(character.position.x, character.position.y + mouseYPosition, character.position.z);
 
-        if (Input.GetAxis("Vertical") > 0 | Input.GetAxis("Vertical") < 0) {
 
+        // rotate player towards direction of movement
+        if (Input.GetAxis("Vertical") != 0) {
             Quaternion turnAngle = Quaternion.Euler(0, centerPoint.eulerAngles.y, 0);
-
             character.rotation = Quaternion.Slerp(character.rotation, turnAngle, Time.deltaTime * rotationSpeed);
 
         }
+        /*
+        */
 
+        // turn player towards movement
     }
 }
