@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour {
             lookAngle = Quaternion.LookRotation(movement, Vector3.up);
             turnAngle = lookAngle * cameraAngle;
         } else {
-            turnAngle = cameraAngle;
+            turnAngle = character.rotation;
         }
 
 
