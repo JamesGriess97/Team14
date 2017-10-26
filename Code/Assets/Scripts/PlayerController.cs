@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        // get mouse input
         mouseX += Input.GetAxis("Mouse X");
         mouseY -= Input.GetAxis("Mouse Y");
         mouseY = Mathf.Clamp(mouseY, 10, 60f);
@@ -31,27 +32,21 @@ public class PlayerController : MonoBehaviour {
         playerCam.LookAt(centerPoint);
         centerPoint.localRotation = Quaternion.Euler(mouseY, mouseX, 0);
 
+        // get keyboard input
         moveFB = Input.GetAxis("Vertical") * moveSpeed;
         moveLR = Input.GetAxis("Horizontal") * moveSpeed;
 
         Vector3 movement = new Vector3(moveLR, 0, moveFB);
 
-        movement = character.rotation * movement;
+        Quaternion lookAngle = Quaternion.LookRotation(movement, Vector3.up);
+        Quaternion cameraAngle = Quaternion.Euler(0, centerPoint.eulerAngles.y, 0);
+        Quaternion turnAngle = lookAngle * cameraAngle;
 
+        movement = cameraAngle * movement;
+
+        // move the player and update rotation and centerpoint
         character.GetComponent<CharacterController>().Move(movement * Time.deltaTime);
-
+        character.rotation = Quaternion.Slerp(character.rotation, turnAngle, Time.deltaTime * rotationSpeed);
         centerPoint.position = new Vector3(character.position.x, character.position.y + mouseYPosition, character.position.z);
-
-
-        // rotate player towards direction of movement
-        if (Input.GetAxis("Vertical") != 0) {
-            Quaternion turnAngle = Quaternion.Euler(0, centerPoint.eulerAngles.y, 0);
-            character.rotation = Quaternion.Slerp(character.rotation, turnAngle, Time.deltaTime * rotationSpeed);
-
-        }
-        /*
-        */
-
-        // turn player towards movement
     }
 }

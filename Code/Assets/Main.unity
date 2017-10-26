@@ -365,7 +365,7 @@ MonoBehaviour:
   mouseSensitivity: 10
   mouseYPosition: 1
   moveSpeed: 10
-  rotationSpeed: 5
+  rotationSpeed: 10
 --- !u!4 &1069904905
 Transform:
   m_ObjectHideFlags: 0
