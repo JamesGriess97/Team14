@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
         mouseX += Input.GetAxis("Mouse X");
         mouseY -= Input.GetAxis("Mouse Y");
         mouseY = Mathf.Clamp(mouseY, 10, 60f);

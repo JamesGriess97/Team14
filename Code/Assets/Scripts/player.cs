@@ -6,7 +6,8 @@ public class player : MonoBehaviour {
 	public CapsuleCollider playerCollider;
 	public float moveSpeed = 40;
 	private GameObject troll;
-	private Troll trollScript;
+
+	//private Troll trollScript;
 	// Use this for initialization
 	void Start () {
 //		troll = GameObject.Find ("Troll1");
@@ -26,7 +27,8 @@ public class player : MonoBehaviour {
 	}//end Update
 
 
-
+	/*
+	 
 	void OnCollisionStay(Collision attack){
 		if (attack.gameObject.tag == "Troll") {
 			trollScript = attack.gameObject.GetComponent<Troll> ();
@@ -38,6 +40,7 @@ public class player : MonoBehaviour {
 		}
 	}//end  OnCollsisionEnter
 
+	*/
 
 
 

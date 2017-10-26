@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AI_Control : MonoBehaviour {
-	public GameObjectame player;
+	//public GameObjectame player;
 	
 
 	// Use this for initialization

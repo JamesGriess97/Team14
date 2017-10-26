@@ -294,8 +294,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 774031407}
-  m_Father: {fileID: 1069904905}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &982846935 stripped
 Transform:
@@ -311,8 +311,8 @@ GameObject:
   - component: {fileID: 1069904905}
   - component: {fileID: 1069904903}
   - component: {fileID: 1069904902}
-  - component: {fileID: 1069904904}
   - component: {fileID: 1069904906}
+  - component: {fileID: 1069904904}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1069904901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb64c076e3bf5f4d94c185cd3eb957d, type: 3}
+  m_Script: {fileID: 11500000, guid: 71ff50fb1b23343ed898b4b847bf4bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 774031407}
@@ -376,7 +376,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 942016791}
   - {fileID: 982846935}
   m_Father: {fileID: 0}
   m_RootOrder: 1
