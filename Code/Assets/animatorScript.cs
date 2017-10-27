@@ -12,12 +12,20 @@ public class animatorScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// attack animation
 		if (Input.GetMouseButtonDown(0)) {
-			anim.SetBool ("Attack2", true);
+			anim.SetBool ("Attack", true);
 			Debug.Log ("clicked!");
 		} 
 		if (Input.GetMouseButtonUp(0)) {
-			anim.SetBool ("Attack2", false);
+			anim.SetBool ("Attack", false);
+		}
+
+		// walk animation
+		if ((Input.GetAxis ("Vertical") != 0) || (Input.GetAxis ("Horizontal") != 0)) {
+			anim.SetFloat ("Speed", 2);
+		} else {
+			anim.SetFloat ("Speed", 0);
 		}
 	}
 }
