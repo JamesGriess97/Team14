@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     public float gravity = 9.8f;
     private float vSpeed = 0f;
 
+
     // Use this for initialization
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -68,5 +69,6 @@ public class PlayerController : MonoBehaviour {
         character.GetComponent<CharacterController>().Move(movement * Time.deltaTime);
         character.rotation = Quaternion.Slerp(character.rotation, turnAngle, Time.deltaTime * rotationSpeed);
         centerPoint.position = new Vector3(character.position.x, character.position.y + mouseYPosition, character.position.z);
-    }
+		
+	}
 }
