@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Troll : MonoBehaviour {
+    private int health = 3;
 
-	
-	public Transform player;
+
+    public Transform player;
 	public Transform troll;
 
 	private Vector3 distance;
@@ -42,8 +43,17 @@ public class Troll : MonoBehaviour {
 
 
         troll.GetComponent<CharacterController>().Move(movement * Time.deltaTime);
- 
 
-       
+
+
     }
+
+    void OnTriggerEnter(Collider other) {
+        Debug.Log("collision");
+        health -= 1;
+        if (health == 0) {
+            Destroy(gameObject);
+        }
+    }
+
 }
