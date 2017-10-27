@@ -15,7 +15,7 @@ public class animatorScript : MonoBehaviour {
 		// attack animation
 		if (Input.GetMouseButtonDown(0)) {
 			anim.SetBool ("Attack", true);
-			Debug.Log ("clicked!");
+			//Debug.Log ("clicked!");
 		} 
 		if (Input.GetMouseButtonUp(0)) {
 			anim.SetBool ("Attack", false);
