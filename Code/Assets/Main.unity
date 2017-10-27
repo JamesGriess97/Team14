@@ -397,8 +397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380de455791c60946a09ef01aed5dcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1069904901}
-  troll: {fileID: 695720439}
+  player: {fileID: 1069904905}
+  troll: {fileID: 29924115}
   gravity: 9.8
   moveSpeed: 1
   rotationSpeed: 5

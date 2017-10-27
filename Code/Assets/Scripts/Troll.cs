@@ -5,9 +5,9 @@ using UnityEngine;
 public class Troll : MonoBehaviour {
 
 	
-	public GameObject player;
+	public Transform player;
 	public Transform troll;
-	private Vector3 distance;
+	private Vector3 target;
 	Animator anim;
     public float gravity = 9.8f;
     private float vSpeed = 0f;
@@ -24,20 +24,17 @@ public class Troll : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		distance = transform.position - player.transform.position;
-		//move on a set path
-		if(moveLR < 10){
-			moveLR = moveLR++;
-		}
-		else{
-			moveLR = moveLR--;
-		}
+		target = troll.position - player.transform.position;
+		float step = moveSpeed* Time.deltaTime;
+		//Vector3 movement = new Vector3(Vector3.MoveTowards(troll.position, player.position, moveSpeed).x, 0, Vector3.MoveTowards(troll.position, player.position, moveSpeed).z);
+		troll.position = Vector3.MoveTowards(troll.position, player.position, step);
+
 		
-		Vector3 movement = new Vector3(moveLR, 0, moveFB);
-		troll.GetComponent<CharacterController>().Move(movement * Time.deltaTime);	
+		//Vector3 movement = new Vector3();
+		//troll.GetComponent<CharacterController>().Move(movement * Time.deltaTime);	
 	
 		//if the player is close enough launch an attack
-		if(distance.magnitude < 3) {
+		if(target.magnitude < 3) {
 			//anim.SetBool ("Attack", true);
 		} 
 		else{
