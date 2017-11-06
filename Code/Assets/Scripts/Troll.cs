@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Troll : MonoBehaviour {
-    private int health = 3;
+    public int health = 5;
+	public Slider healthSlider;
 
 
     public Transform player;
@@ -18,18 +20,21 @@ public class Troll : MonoBehaviour {
 	private float moveFB, moveLR;
     private bool foo = false;
 
+	private float playerAttackTime = 0.5f;
+	float timer =0f;
     private Vector3 posOrig;
 	// Use this for initialization
 	void Start () {
 		moveFB = 0;
 		moveLR = 0;
-	    int trollHealth = 5;
+	    //int trollHealth = 5;
         posOrig = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		
+		timer += Time.deltaTime;
 		Vector3 movement = new Vector3(transform.position.x * moveSpeed, 0, transform.position.y * moveSpeed);
         if(Vector3.Distance(transform.position, posOrig) > 20 && !foo) {
             moveSpeed = moveSpeed * -1;
@@ -48,9 +53,17 @@ public class Troll : MonoBehaviour {
 
     }
 
-    void OnTriggerEnter(Collider other) {
+    void OnTriggerStay(Collider other) {
+		
         Debug.Log("collision");
-        health -= 1;
+		if (Input.GetMouseButtonDown(0)&& timer >= playerAttackTime) {
+			timer = 0f;
+			health -= 1;
+		} 
+			
+		healthSlider.value = health;
+	
+        
         if (health == 0) {
             Destroy(gameObject);
         }
