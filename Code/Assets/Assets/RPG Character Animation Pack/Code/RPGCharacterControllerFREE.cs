@@ -58,11 +58,6 @@ public class RPGCharacterControllerFREE : MonoBehaviour{
 	float moveSpeed;
 	public float runSpeed = 6f;
 	float rotationSpeed = 40f;
-  
-	float x;
-	float z;
-	float dv;
-	float dh;
 	Vector3 inputVec;
 	Vector3 newVelocity;
 
@@ -84,9 +79,23 @@ public class RPGCharacterControllerFREE : MonoBehaviour{
 	public float knockbackMultiplier = 1f;
 	bool isKnockback;
 
+	//inputs variables
+	float inputHorizontal = 0f;
+	float inputVertical = 0f;
+	float inputDashVertical = 0f;
+	float inputDashHorizontal = 0f;
+	float inputBlock = 0f;
+	bool inputLightHit;
+	bool inputDeath;
+	bool inputAttackR;
+	bool inputAttackL;
+	bool inputCastL;
+	bool inputCastR;
+	bool inputJump;
+
 	#endregion
 
-	#region Initialization
+	#region Initialization and Inputs
 
 	void Start(){
 		//set the animator component
@@ -96,22 +105,38 @@ public class RPGCharacterControllerFREE : MonoBehaviour{
 		agent.enabled = false;
 	}
 
+	void Inputs(){
+		inputDashHorizontal = Input.GetAxisRaw("DashHorizontal");
+		inputDashVertical = Input.GetAxisRaw("DashVertical");
+		inputHorizontal = Input.GetAxisRaw("Horizontal");
+		inputVertical = Input.GetAxisRaw("Vertical");
+		inputLightHit = Input.GetButtonDown("LightHit");
+		inputDeath = Input.GetButtonDown("Death");
+		inputAttackL = Input.GetButtonDown("AttackL");
+		inputAttackR = Input.GetButtonDown("AttackR");
+		inputCastL = Input.GetButtonDown("CastL");
+		inputCastR = Input.GetButtonDown("CastR");
+		inputBlock = Input.GetAxisRaw("TargetBlock");
+		inputJump = Input.GetButtonDown("Jump");
+	}
+
 	#endregion
 
-	#region UpdateAndInput
+	#region Updates
 
 	void Update(){
 		//make sure there is animator on character
 		if(animator){
+			Inputs();
 			if(canMove && !isDead && !useNavMesh){
 				CameraRelativeMovement();
 			} 
 			Rolling();
 			Jumping();
-			if(Input.GetButtonDown("LightHit") && canAction && isGrounded){
+			if(inputLightHit && canAction && isGrounded){
 				GetHit();
 			}
-			if(Input.GetButtonDown("Death") && canAction && isGrounded){
+			if(inputDeath && canAction && isGrounded){
 				if(!isDead){
 					StartCoroutine(_Death());
 				}
@@ -119,26 +144,26 @@ public class RPGCharacterControllerFREE : MonoBehaviour{
 					StartCoroutine(_Revive());
 				}
 			}
-			if(Input.GetButtonDown("AttackL") && canAction && isGrounded){
+			if(inputAttackL && canAction && isGrounded){
 				Attack(1);
 			}
-			if(Input.GetButtonDown("AttackR") && canAction && isGrounded){
+			if(inputAttackR && canAction && isGrounded){
 				Attack(2);
 			}
-			if(Input.GetButtonDown("CastL") && canAction && isGrounded && !isStrafing){
+			if(inputCastL && canAction && isGrounded && !isStrafing){
 				AttackKick(1);
 			}
-			if(Input.GetButtonDown("CastR") && canAction && isGrounded && !isStrafing){
+			if(inputCastR && canAction && isGrounded && !isStrafing){
 				AttackKick(2);
 			}
 			//if strafing
-			if(Input.GetKey(KeyCode.LeftShift) || Input.GetAxisRaw("TargetBlock") > .1 && canAction){  
+			if((Input.GetKey(KeyCode.LeftShift) || inputBlock > 0.1f) && canAction){  
 				isStrafing = true;
 				animator.SetBool("Strafing", true);
-				if(Input.GetButtonDown("CastL") && canAction && isGrounded){
+				if(inputCastL && canAction && isGrounded){
 					CastAttack(1);
 				}
-				if(Input.GetButtonDown("CastR") && canAction && isGrounded){
+				if(inputCastR && canAction && isGrounded){
 					CastAttack(2);
 				}
 			}
@@ -168,11 +193,25 @@ public class RPGCharacterControllerFREE : MonoBehaviour{
 		else{
 			agent.enabled = false;
 		}
+		//Slow time
+		if(Input.GetKeyDown(KeyCode.T)){
+			if(Time.timeScale != 1){
+				Time.timeScale = 1;
+			}
+			else{
+				Time.timeScale = 0.15f;
+			}
+		}
+		//Pause
+		if(Input.GetKeyDown(KeyCode.P)){
+			if(Time.timeScale != 1){
+				Time.timeScale = 1;
+			}
+			else{
+				Time.timeScale = 0f;
+			}
+		}
 	}
-
-	#endregion
-
-	#region Fixed/Late Updates
 
 	void FixedUpdate(){
 		CheckForGrounded();
@@ -230,11 +269,6 @@ public class RPGCharacterControllerFREE : MonoBehaviour{
 	#region UpdateMovement
 
 	void CameraRelativeMovement(){
-		float inputDashVertical = Input.GetAxisRaw("DashVertical");
-		float inputDashHorizontal = Input.GetAxisRaw("DashHorizontal");
-		float inputHorizontal = Input.GetAxisRaw("Horizontal");
-		float inputVertical = Input.GetAxisRaw("Vertical");
-
 		//converts control input vectors into camera facing vectors
 		Transform cameraTransform = sceneCamera.transform;
 		//Forward vector relative to the camera along the x-z plane   
@@ -243,15 +277,10 @@ public class RPGCharacterControllerFREE : MonoBehaviour{
 		forward = forward.normalized;
 		//Right vector relative to the camera always orthogonal to the forward vector
 		Vector3 right = new Vector3(forward.z, 0, -forward.x);
-		//directional inputs
-		dv = inputDashVertical;
-		dh = inputDashHorizontal;
 		if(!isRolling){
-			targetDashDirection = dh * right + dv * -forward;
+			targetDashDirection = inputDashHorizontal * right + inputDashVertical * -forward;
 		}
-		x = inputHorizontal;
-		z = inputVertical;
-		inputVec = x * right + z * forward;
+		inputVec = inputHorizontal * right + inputVertical * forward;
 	}
 
 	//rotate character towards direction moved
@@ -343,7 +372,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour{
 
 	void Jumping(){
 		if(isGrounded){
-			if(canJump && Input.GetButtonDown("Jump")){
+			if(canJump && inputJump){
 				StartCoroutine(_Jump());
 			}
 		}
@@ -359,7 +388,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour{
 					startFall = true;
 				}
 			}
-			if(canDoubleJump && doublejumping && Input.GetButtonDown("Jump") && !doublejumped && isFalling){
+			if(canDoubleJump && doublejumping && inputJump && !doublejumped && isFalling){
 				// Apply the current movement to launch velocity
 				rb.velocity += doublejumpSpeed * Vector3.up;
 				animator.SetInteger("Jumping", 3);
