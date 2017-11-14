@@ -35,10 +35,13 @@ public class PlayerController : MonoBehaviour {
             }
         }
         vSpeed -= gravity * Time.deltaTime;
-        
+
         // get mouse input
         mouseX += Input.GetAxis("Mouse X");
         mouseY -= Input.GetAxis("Mouse Y");
+        mouseX += Input.GetAxis("X360_RStickX");
+        mouseY -= Input.GetAxis("X360_RStickY");
+
         mouseY = Mathf.Clamp(mouseY, 10, 60f);
 
         playerCam.LookAt(centerPoint);
