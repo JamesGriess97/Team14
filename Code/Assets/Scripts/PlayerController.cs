@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     public float moveSpeed = 2f;
 
     public float rotationSpeed = 5f;
+    public float lookSpeed = 1f;
 
     // gravity 
     public float jumpSpeed = 8f;
@@ -39,8 +40,8 @@ public class PlayerController : MonoBehaviour {
         // get mouse input
         mouseX += Input.GetAxis("Mouse X");
         mouseY -= Input.GetAxis("Mouse Y");
-        mouseX += Input.GetAxis("X360_RStickX");
-        mouseY -= Input.GetAxis("X360_RStickY");
+        mouseX += (lookSpeed * Input.GetAxis("X360_RStickX"));
+        mouseY -= (lookSpeed * Input.GetAxis("X360_RStickY"));
 
         mouseY = Mathf.Clamp(mouseY, 10, 60f);
 
