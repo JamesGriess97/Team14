@@ -21,18 +21,24 @@ public class PlayerController : MonoBehaviour {
     public float gravity = 9.8f;
     private float vSpeed = 0f;
 
+    // animator
+    Animator anim;
 
     // Use this for initialization
     void Start() {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update() {
         if(character.GetComponent<CharacterController>().isGrounded) {
             vSpeed = 0f;
-            if(Input.GetKeyDown("space")) {
+            if (Input.GetKeyDown("space") || Input.GetButtonDown("X360_A")) {
                 vSpeed = jumpSpeed;
+                anim.SetBool("Jump", true);
+            } else {
+                anim.SetBool("Jump", false);
             }
         }
         vSpeed -= gravity * Time.deltaTime;
