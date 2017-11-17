@@ -21,9 +21,12 @@ public class animatorScript : MonoBehaviour {
 			anim.SetBool ("Attack", false);
 		}
 
+        float vert = Mathf.Abs(Input.GetAxis("Vertical"));
+        float horiz = Mathf.Abs(Input.GetAxis("Horizontal"));
+
 		// walk animation
-		if ((Input.GetAxis ("Vertical") != 0) || (Input.GetAxis ("Horizontal") != 0)) {
-			anim.SetFloat ("Speed", 2);
+		if ((vert != 0) || (horiz != 0)) {
+			anim.SetFloat ("Speed", (vert + horiz) / 2f);
 		} else {
 			anim.SetFloat ("Speed", 0);
 		}

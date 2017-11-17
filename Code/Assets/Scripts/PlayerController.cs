@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour {
         // get keyboard input
         moveFB = Input.GetAxis("Vertical") * moveSpeed;
         moveLR = Input.GetAxis("Horizontal") * moveSpeed;
-
         Vector3 movement = new Vector3(moveLR, 0, moveFB);
         Quaternion lookAngle;
         Quaternion cameraAngle;
