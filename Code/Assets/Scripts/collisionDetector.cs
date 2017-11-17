@@ -21,7 +21,7 @@ public class collisionDetector : MonoBehaviour {
 	}
 
     void OnTriggerStay(Collider other) {
-        Debug.Log("Health = " + health);
+        //Debug.Log("Health = " + health);
 		if (Input.GetMouseButtonDown(0)) {
 			health -= 1;
 		} 

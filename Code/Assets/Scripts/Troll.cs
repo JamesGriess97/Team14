@@ -55,7 +55,7 @@ public class Troll : MonoBehaviour {
 
     void OnTriggerStay(Collider other) {
 		
-        Debug.Log("collision");
+        //Debug.Log("collision");
 		if (Input.GetMouseButtonDown(0)&& timer >= playerAttackTime) {
 			timer = 0f;
 			health -= 1;
