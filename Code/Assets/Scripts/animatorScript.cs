@@ -13,11 +13,11 @@ public class animatorScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // attack animation
-        if (Input.GetMouseButtonDown(0) || Input.GetButton("X360_Trigger")) {
+        if (Input.GetMouseButtonDown(0) || Input.GetButton("X360_B")) {
 			anim.SetBool ("Attack", true);
 			//Debug.Log ("clicked!");
 		} 
-		if (Input.GetMouseButtonUp(0)) {
+		if (Input.GetMouseButtonUp(0)  || Input.GetButtonUp("X360_B")){
 			anim.SetBool ("Attack", false);
 		}
 
