@@ -10,7 +10,6 @@ public class TrollAttack : MonoBehaviour {
 	GameObject player;
 	PlayerHealth playerHealth;
 	bool playerInRange ;
-	bool attacking = false;
 	float timer;
 
 
@@ -51,10 +50,8 @@ public class TrollAttack : MonoBehaviour {
 
 	void Attack(){
 		timer = 0f;
-		if(attacking){
-			if(playerHealth.currentHealth > 0){
-				playerHealth.TakeDamage(attackDamage);
-			}
+		if(playerHealth.currentHealth > 0){
+			playerHealth.TakeDamage(attackDamage);
 		}
 	}
 }
