@@ -78,6 +78,27 @@ public class PlayerController : MonoBehaviour {
         character.GetComponent<CharacterController>().Move(movement * Time.deltaTime);
         character.rotation = Quaternion.Slerp(character.rotation, turnAngle, Time.deltaTime * rotationSpeed);
         centerPoint.position = new Vector3(character.position.x, character.position.y + mouseYPosition, character.position.z);
-		
-	}
+
+        // Animations
+
+        // attack
+        if (Input.GetMouseButtonDown(0) || Input.GetButton("X360_B")) {
+            anim.SetBool("Attack", true);
+            //Debug.Log ("clicked!");
+        }
+        if (Input.GetMouseButtonUp(0) || Input.GetButtonUp("X360_B")) {
+            anim.SetBool("Attack", false);
+        }
+
+        float vert = Mathf.Abs(Input.GetAxis("Vertical"));
+        float horiz = Mathf.Abs(Input.GetAxis("Horizontal"));
+
+        // walk
+        if ((vert != 0) || (horiz != 0)) {
+            anim.SetFloat("Speed", (vert + horiz) / 2f);
+        }
+        else {
+            anim.SetFloat("Speed", 0);
+        }
+    }
 }
