@@ -91,7 +91,12 @@ public class PlayerController : MonoBehaviour {
         centerPoint.position = new Vector3(character.position.x, character.position.y + mouseYPosition, character.position.z);
 
 
-        comboController();
+        int combo = comboController();
+        if(combo == 1) {
+            anim.SetBool("Attack", true);
+        } else if (combo == 2) {
+            anim.SetBool("Kick", true);
+        }
       
         float vert = Mathf.Abs(Input.GetAxis("Vertical"));
         float horiz = Mathf.Abs(Input.GetAxis("Horizontal"));
@@ -107,8 +112,9 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    void comboController() {
+    int comboController() {
         // attack animation combos
+        // this function could probably use some work
         if(noOfClicks == 0) {
             anim.SetBool("Attack", false);
             anim.SetBool("Kick", false);
@@ -129,16 +135,17 @@ public class PlayerController : MonoBehaviour {
         if(totalTime >= maxComboDelay) {
             Debug.Log("no clicks: " + noOfClicks);
             if (noOfClicks == 1) {
-                anim.SetBool("Attack", true);
-            }
-            if (noOfClicks == 2) {
-                anim.SetBool("Kick", true);
+                noOfClicks = 0;
+                return 1;
+            } else if (noOfClicks == 2) {
+                noOfClicks = 0;
+                return 2;
             }
             noOfClicks = 0;
-                lastClickedTime = 0;
-                totalTime = 0;
-                startTime = 0;
+            lastClickedTime = 0;
+            totalTime = 0;
+            startTime = 0;
         }
-
+        return 0;
     }
 }
