@@ -24,6 +24,16 @@ public class PlayerController : MonoBehaviour {
     // animator
     Animator anim;
 
+
+    // combo vars
+    int noOfClicks = 0;
+    //Time when last button was clicked
+    float startTime = 0;
+    float totalTime = 0;
+    float lastClickedTime = 0;
+    //Delay between clicks for which clicks will be considered as combo
+    public float maxComboDelay = .3f;
+
     // Use this for initialization
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -32,6 +42,7 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        // jump animation
         if(character.GetComponent<CharacterController>().isGrounded) {
             vSpeed = 0f;
             if (Input.GetKeyDown("space") || Input.GetButtonDown("X360_A")) {
@@ -79,26 +90,55 @@ public class PlayerController : MonoBehaviour {
         character.rotation = Quaternion.Slerp(character.rotation, turnAngle, Time.deltaTime * rotationSpeed);
         centerPoint.position = new Vector3(character.position.x, character.position.y + mouseYPosition, character.position.z);
 
-        // Animations
 
-        // attack
-        if (Input.GetMouseButtonDown(0) || Input.GetButton("X360_B")) {
-            anim.SetBool("Attack", true);
-            //Debug.Log ("clicked!");
-        }
-        if (Input.GetMouseButtonUp(0) || Input.GetButtonUp("X360_B")) {
-            anim.SetBool("Attack", false);
-        }
-
+        comboController();
+      
         float vert = Mathf.Abs(Input.GetAxis("Vertical"));
         float horiz = Mathf.Abs(Input.GetAxis("Horizontal"));
 
-        // walk
+        // walk animation
         if ((vert != 0) || (horiz != 0)) {
             anim.SetFloat("Speed", (vert + horiz) / 2f);
         }
         else {
             anim.SetFloat("Speed", 0);
         }
+
+
+    }
+
+    void comboController() {
+        // attack animation combos
+        if(noOfClicks == 0) {
+            anim.SetBool("Attack", false);
+            anim.SetBool("Kick", false);
+        }
+
+        if (totalTime == 0 && lastClickedTime == 0) {
+            startTime = Time.time;
+        }
+
+        totalTime = Time.time - startTime;
+
+        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("X360_B")) {
+            lastClickedTime = Time.time;
+            noOfClicks++;
+            noOfClicks = Mathf.Clamp(noOfClicks, 0, 2);
+        }
+
+        if(totalTime >= maxComboDelay) {
+            Debug.Log("no clicks: " + noOfClicks);
+            if (noOfClicks == 1) {
+                anim.SetBool("Attack", true);
+            }
+            if (noOfClicks == 2) {
+                anim.SetBool("Kick", true);
+            }
+            noOfClicks = 0;
+                lastClickedTime = 0;
+                totalTime = 0;
+                startTime = 0;
+        }
+
     }
 }

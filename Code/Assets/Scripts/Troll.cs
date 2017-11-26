@@ -47,7 +47,7 @@ public class Troll : MonoBehaviour {
         //Debug.Log("distance: " + Vector3.Distance(transform.position, posOrig));
 
 
-        troll.GetComponent<CharacterController>().Move(movement * Time.deltaTime);
+        //troll.GetComponent<CharacterController>().Move(movement * Time.deltaTime);
 
 
 
