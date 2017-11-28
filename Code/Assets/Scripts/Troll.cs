@@ -40,6 +40,13 @@ public class Troll : MonoBehaviour {
 
 
 
+<<<<<<< HEAD
+      
+=======
+        //troll.GetComponent<CharacterController>().Move(movement * Time.deltaTime);
+>>>>>>> 973d9d7db3b3b3f68b1402901eac63df31c13780
+
+
 
 =======
 >>>>>>> 80ee7a48ed5b3f1ba8e1bc75885640653eb1d933
