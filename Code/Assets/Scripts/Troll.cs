@@ -36,13 +36,7 @@ public class Troll : MonoBehaviour {
 		timer += Time.deltaTime;
 		moveTroll();
 
-<<<<<<< HEAD
 
-
-
-
-=======
->>>>>>> 80ee7a48ed5b3f1ba8e1bc75885640653eb1d933
     }
 
 /*     void OnTriggerStay(Collider other) {
