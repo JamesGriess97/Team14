@@ -36,17 +36,6 @@ public class Troll : MonoBehaviour {
 		timer += Time.deltaTime;
 		moveTroll();
 
-
-
-
-<<<<<<< HEAD
-      
-=======
-        //troll.GetComponent<CharacterController>().Move(movement * Time.deltaTime);
->>>>>>> 973d9d7db3b3b3f68b1402901eac63df31c13780
-
-
-
     }
 
 /*     void OnTriggerStay(Collider other) {
