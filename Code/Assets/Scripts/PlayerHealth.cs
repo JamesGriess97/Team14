@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour {
 		healthSlider.value = currentHealth;
 		if (currentHealth <= 0 && !isDead) {
 			Destroy (gameObject);
-			print("player dead, statement in PlayerHealth.cs!!!");
+			//anim.SetTrigger ("GameOver");
 		}
 	}
 }
