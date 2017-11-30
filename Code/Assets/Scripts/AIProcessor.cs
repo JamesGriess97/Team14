@@ -43,7 +43,6 @@ public class AIProcessor : MonoBehaviour {
 			
 		}
 		else{
-			
 
 		}
 	}
@@ -82,12 +81,12 @@ public class AIProcessor : MonoBehaviour {
     }
 	//return whether or not the player is in range of either attack
 	bool inRange(){
+
 		
 		return false;
 	}
 	//based on statistical analysis should/can the NPC attack
-	bool shouldAttack(){
-		
+	bool shouldAttack(){		
 		return false;
 	}
 	//which attack should be used against the player
@@ -95,4 +94,5 @@ public class AIProcessor : MonoBehaviour {
 		
 		return 0;
 	}
+
 }
