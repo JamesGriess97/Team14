@@ -23,7 +23,7 @@ public class GameOverManager : MonoBehaviour
 		if(playerHealth.currentHealth <= 0)
 		{
 			// ... tell the animator the game is over.
-			anim.SetTrigger ("GameOver");
+			anim.SetBool("GameOver", true);
 
 			// .. increment a timer to count up to restarting.
 			restartTimer += Time.deltaTime;
