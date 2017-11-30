@@ -38,7 +38,7 @@ public class Troll : MonoBehaviour {
 		newPosition.x = troll.position.x;
 		newPosition.y = 155;
 		newPosition.z = troll.position.z;
-		healthSliderV.position = Transform.position;
+		healthSliderV.position = troll.position;
 		timer += Time.deltaTime;
 		moveTroll();
 		

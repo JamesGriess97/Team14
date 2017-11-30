@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 		newPosition.x = character.position.x;
 		newPosition.y = 55;
 		newPosition.z = character.position.z;
-		healthSliderV.position = Transform.position;
+		healthSliderV.position = character.position;
         // jump animation
         if(character.GetComponent<CharacterController>().isGrounded) {
             vSpeed = 0f;
