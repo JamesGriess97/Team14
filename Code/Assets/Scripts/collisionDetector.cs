@@ -20,9 +20,11 @@ public class collisionDetector : MonoBehaviour {
 		
 	}
 
-    void OnTriggerEnter(Collider other) {
-        Debug.Log("Health = " + health);
-        health -= 1; 
+    void OnTriggerStay(Collider other) {
+        //Debug.Log("Health = " + health);
+		if (Input.GetMouseButtonDown(0)) {
+			health -= 1;
+		} 
 
 		healthSlider.value = health;
         if (health == 0) {

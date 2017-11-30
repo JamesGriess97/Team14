@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour {
 		currentHealth -= amount;
 		healthSlider.value = currentHealth;
 		if (currentHealth <= 0 && !isDead) {
-			//Destroy (gameObject);
+			Destroy (gameObject);
 			//anim.SetTrigger ("GameOver");
 		}
 	}
