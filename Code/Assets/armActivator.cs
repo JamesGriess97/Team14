@@ -28,6 +28,6 @@ public class armActivator : MonoBehaviour {
 
     void disableTrigger() {
         armCollider.isTrigger = false;
-        Debug.Log("why is all my stuff gone");
+        Debug.Log("cancer fuck you visual studio");
     }
 }
