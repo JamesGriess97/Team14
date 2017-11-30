@@ -65,9 +65,16 @@ public class Troll : MonoBehaviour {
 	//controls troll movement procedures
 	void moveTroll(){
 		anim.SetBool("Walk",true);
-		if(aggressive)
+		if(aggressive){
 		nav.SetDestination (player.position);
-		
+		}
+		else if(!aggressive){
+		anim.setBool("Walk", true);
+		moveSpeed = 0.08f;
+		}
+		else{
+			idleTroll();
+		}
 	}
 	
 	//force troll stand to stand still
@@ -77,6 +84,11 @@ public class Troll : MonoBehaviour {
 	//troll attack procedures
 	void attack(){
 		anim.SetBool("Walk", false);
+	}
+	
+	bool isRetreat(){
+		aggressive = false;
+		return aggressive;
 	}
 
 }

@@ -6,7 +6,9 @@ public class AIProcessor : MonoBehaviour {
 	Animator anim;
 	
 	public Transform player;
-	public Transform Troll;
+	public Transform troll;
+	Troll troll;
+	PlayerController player_Con;
 	private float success;
 	private float fail;
 	private float playerSuccess;
@@ -14,6 +16,7 @@ public class AIProcessor : MonoBehaviour {
 	private float combo1Count;
 	private float combo2Count;
 	private bool playerInRange;
+	private bool retreat;
 
 	 // combo vars
     int noOfClicks = 0;
@@ -30,6 +33,8 @@ public class AIProcessor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		retreat = Troll.isretreat();
+		
 		int combo = comboController();
 		if( combo == 1 ){
 			
@@ -38,15 +43,8 @@ public class AIProcessor : MonoBehaviour {
 			
 		}
 		else{
-			if(Input.GetKeyDown("space") || Input.GetButtonDown("X360_A")){
-				
-			}
-			else if(Input.GetAxis("Vertical") || Input.GetAxis("Horizontal")){
-				
-			}
-			else{
-				
-			}
+			
+
 		}
 	}
 	
@@ -82,16 +80,19 @@ public class AIProcessor : MonoBehaviour {
         }
         return 0;
     }
-	
+	//return whether or not the player is in range of either attack
 	bool inRange(){
 		
+		return false;
 	}
-	//
+	//based on statistical analysis should/can the NPC attack
 	bool shouldAttack(){
 		
+		return false;
 	}
 	//which attack should be used against the player
-	String whichAttack(){
+	int whichAttack(){
 		
+		return 0;
 	}
 }
