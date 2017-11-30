@@ -41,9 +41,9 @@ public class AIProcessor : MonoBehaviour {
 			if(Input.GetKeyDown("space") || Input.GetButtonDown("X360_A")){
 				
 			}
-			else if(Input.GetAxis("Vertical") || Input.GetAxis("Horizontal")){
+			//else if(Input.GetAxis("Vertical") || Input.GetAxis("Horizontal")){
 				
-			}
+			//}
 			else{
 				
 			}
@@ -84,14 +84,14 @@ public class AIProcessor : MonoBehaviour {
     }
 	
 	bool inRange(){
-		
+        return false;
 	}
 	//
 	bool shouldAttack(){
-		
+        return false;
 	}
 	//which attack should be used against the player
-	String whichAttack(){
+	//String whichAttack(){
 		
-	}
+	//}
 }
