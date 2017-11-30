@@ -7,7 +7,7 @@ public class AIProcessor : MonoBehaviour {
 	
 	public Transform player;
 	public Transform troll;
-	Troll troll;
+	Troll troll_ob;
 	PlayerController player_Con;
 	private float success;
 	private float fail;
@@ -33,7 +33,7 @@ public class AIProcessor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		retreat = Troll.isretreat();
+		retreat = troll_ob.isRetreat();
 		
 		int combo = comboController();
 		if( combo == 1 ){

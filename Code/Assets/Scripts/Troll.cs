@@ -69,7 +69,7 @@ public class Troll : MonoBehaviour {
 		nav.SetDestination (player.position);
 		}
 		else if(!aggressive){
-		anim.setBool("Walk", true);
+		anim.SetBool("Walk", true);
 		moveSpeed = 0.08f;
 		}
 		else{
@@ -86,7 +86,7 @@ public class Troll : MonoBehaviour {
 		anim.SetBool("Walk", false);
 	}
 	
-	bool isRetreat(){
+	public bool isRetreat(){
 		aggressive = false;
 		return aggressive;
 	}
