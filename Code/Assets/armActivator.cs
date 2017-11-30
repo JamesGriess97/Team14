@@ -28,6 +28,5 @@ public class armActivator : MonoBehaviour {
 
     void disableTrigger() {
         armCollider.isTrigger = false;
-        Debug.Log("cancer fuck you visual studio");
     }
 }
