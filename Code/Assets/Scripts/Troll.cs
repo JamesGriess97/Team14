@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class Troll : MonoBehaviour {
     public int health = 5;
 	public Slider healthSlider;
+	public Transform healthSliderV;
 	PlayerHealth playerHealth;
     public Transform player;
 	public Transform troll;
@@ -33,23 +34,16 @@ public class Troll : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Vector3 newPosition = healthSliderV.position;
+		newPosition.x = troll.position.x;
+		newPosition.y = 155;
+		newPosition.z = troll.position.z;
+		healthSliderV.position = Transform.position;
 		timer += Time.deltaTime;
 		moveTroll();
-
-<<<<<<< HEAD
-
+		
 
 
-<<<<<<< HEAD
-      
-=======
-        //troll.GetComponent<CharacterController>().Move(movement * Time.deltaTime);
->>>>>>> 973d9d7db3b3b3f68b1402901eac63df31c13780
-
-
-
-=======
->>>>>>> 80ee7a48ed5b3f1ba8e1bc75885640653eb1d933
     }
 
 /*     void OnTriggerStay(Collider other) {

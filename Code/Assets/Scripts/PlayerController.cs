@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public Transform playerCam, character, centerPoint;
+    public Transform playerCam, character, centerPoint, healthSliderV;
     private Rigidbody rb;
 
     private float mouseX, mouseY;
@@ -42,6 +42,11 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+		Vector3 newPosition = healthSliderV.position;
+		newPosition.x = character.position.x;
+		newPosition.y = 55;
+		newPosition.z = character.position.z;
+		healthSliderV.position = Transform.position;
         // jump animation
         if(character.GetComponent<CharacterController>().isGrounded) {
             vSpeed = 0f;
