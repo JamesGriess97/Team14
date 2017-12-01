@@ -19641,7 +19641,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0.31797472
+  - time: 0.13333334
     functionName: activateTrigger
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: ac95c472de6c7c4499cd19408291849d,
@@ -19649,7 +19649,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.6
+  - time: 0.5
     functionName: disableTrigger
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: ac95c472de6c7c4499cd19408291849d,
