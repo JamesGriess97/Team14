@@ -23,7 +23,9 @@ public class Troll : MonoBehaviour {
 	bool aggressive;
 	bool distanceAttack;
 	AIProcessor brain;
-	
+
+	public int trollExperienceValue = 10; 
+
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
@@ -39,9 +41,9 @@ public class Troll : MonoBehaviour {
 
     }
 
-/*     void OnTriggerStay(Collider other) {
+     void OnTriggerStay(Collider other) {
 		
-        //Debug.Log("collision");
+        Debug.Log("collision");
 		if (Input.GetMouseButtonDown(0)&& timer >= playerAttackTime) {
 			timer = 0f;
 			health -= 1;
@@ -52,8 +54,9 @@ public class Troll : MonoBehaviour {
         
         if (health == 0) {
             Destroy(gameObject);
+			experienceManager.experience += trollExperienceValue;
         }
-    } */
+    } 
 	
 	//controls troll movement procedures
 	void moveTroll(){

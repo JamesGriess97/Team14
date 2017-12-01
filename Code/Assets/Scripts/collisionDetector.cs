@@ -7,6 +7,7 @@ public class collisionDetector : MonoBehaviour {
 
     private int health = 3;
 	public Slider healthSlider;
+	public int barrelExperienceValue = 5; 
 
 
 
@@ -26,6 +27,7 @@ public class collisionDetector : MonoBehaviour {
 
 		healthSlider.value = health;
         if (health == 0) {
+			experienceManager.experience += barrelExperienceValue;
             Destroy(gameObject);
         }
     }
