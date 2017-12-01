@@ -19642,7 +19642,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0.13333334
-    functionName: activateTrigger
+    functionName: armTrigger
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: ac95c472de6c7c4499cd19408291849d,
       type: 3}

@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arm: {fileID: 1502874997}
+  foot: {fileID: 0}
 --- !u!1 &191785158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,6 +2268,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1632603678}
+--- !u!1 &1668467570 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100054, guid: ffaf641b210f5ea41952cf36f1379d66, type: 3}
+  m_PrefabInternal: {fileID: 68854882}
+--- !u!65 &1668467572
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1668467570}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.35, y: 1, z: 0.35}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1709650892 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400258, guid: e58e375f5ed38074480b5df1226c7bc3, type: 3}
