@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class collisionDetector : MonoBehaviour {
 
     private int health = 1;
-	public Slider healthSlider;
 	public int barrelExperienceValue = 5; 
 
 
@@ -22,10 +21,8 @@ public class collisionDetector : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log("Health = " + health);
         health -= 1; 
 
-		healthSlider.value = health;
         if (health == 0) {
 			experienceManager.experience += barrelExperienceValue;
             Destroy(gameObject);
