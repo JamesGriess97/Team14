@@ -41,3 +41,6 @@ ehthumbs.db
 Thumbs.db
 *.ide
 *.ide-wal
+Code/.vs/Code/v15/sqlite3/*.ide
+Code/.vs/Code/v15/sqlite3/*.ide-shm
+Code/.vs/Code/v15/sqlite3/*.ide-wal
