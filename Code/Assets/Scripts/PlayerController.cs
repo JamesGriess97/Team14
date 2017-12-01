@@ -102,14 +102,13 @@ public class PlayerController : MonoBehaviour {
         float horiz = Mathf.Abs(Input.GetAxis("Horizontal"));
 
         // walk animation
-        if ((vert != 0) || (horiz != 0)) {
-            anim.SetFloat("Speed", (vert + horiz) / 2f);
-        }
-        else {
+        if(vert + horiz != 0) {
+            float speed = Mathf.Clamp((vert + horiz)/2 * 3, .6f, 1.5f);
+            Debug.Log("vert: " + speed);
+            anim.SetFloat("Speed", speed);
+        } else {
             anim.SetFloat("Speed", 0);
         }
-
-
     }
 
     int comboController() {
