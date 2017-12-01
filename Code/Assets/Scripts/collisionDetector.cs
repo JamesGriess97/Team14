@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class collisionDetector : MonoBehaviour {
 
-    private int health = 3;
+    private int health = 1;
 	public Slider healthSlider;
 	public int barrelExperienceValue = 5; 
 
