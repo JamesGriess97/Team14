@@ -40,20 +40,16 @@ public class Troll : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		distance = Vector3.Distance(troll.position, player.position);
-		Debug.Log("distance: " + distance);
-		Debug.Log("isAggressive: " + isAggressive());
 		timer = Time.time - timerStart;
 		if(isAggressive()){
 			if (distance > 10f) {
 				// player too far away, idle
 				idleTroll();
 			} else if (distance < 10f && distance > 5f) {
-				Debug.Log("move");
 				// player out of range, move towards player
 				moveTroll();
 			} else if(distance < 5f) {
 				// player close, attack
-				Debug.Log("Attack");
 				if(brain.shouldAttack()){
 					attack();
 				} else if((timer > 10f)&&(brain.inRange())) {
@@ -72,21 +68,16 @@ public class Troll : MonoBehaviour {
 		}
     }
 
-     void OnTriggerStay(Collider other) {
-		
+     void onTriggerEnter(Collider other) {
         Debug.Log("collision");
-		if (Input.GetMouseButtonDown(0)&& timer >= playerAttackTime) {
-			timer = 0f;
-			health -= 1;
-		} 
-			
-		healthSlider.value = health;
-	
-        
+		health -= 1; 
+
         if (health == 0) {
-            Destroy(gameObject);
 			experienceManager.experience += trollExperienceValue;
+            Destroy(gameObject);
         }
+
+		healthSlider.value = health;
     } 
 	
 	//controls troll movement procedures
@@ -107,7 +98,6 @@ public class Troll : MonoBehaviour {
 	
 	//force troll stand to stand still
 	void idleTroll(){
-		Debug.Log("idle");
 		anim.SetBool("Walk", false);
 		anim.SetBool("Attack",false);
 		nav.SetDestination(troll.position);
