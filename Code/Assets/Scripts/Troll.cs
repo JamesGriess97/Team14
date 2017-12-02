@@ -34,6 +34,7 @@ public class Troll : MonoBehaviour {
 		anim = GetComponentInChildren<Animator>();
 		timerStart = Time.time;
 		aggressive = true;
+		brain = new AIProcessor();
 	}
 	
 	// Update is called once per frame
@@ -43,7 +44,7 @@ public class Troll : MonoBehaviour {
 		if(isRetreat()){
 			moveTroll();
 		}
-		else if(distance < 2f){
+		else if(distance < 30f){
 			if(brain.shouldAttack()){
 				attack();
 			}
@@ -92,7 +93,11 @@ public class Troll : MonoBehaviour {
 		else if(!aggressive){
 		anim.SetBool("Walk", true);
 		moveSpeed = 0.4f;
-		Vector3 newDestination = player.position * -1;
+		Vector3 newDestination;
+		newDestination.x = player.position.x * -1;
+		newDestination.y = player.position.y;
+		newDestination.z = player.position.z * -1;
+		
 		nav.SetDestination(newDestination);
 		}
 		else{
