@@ -8,18 +8,6 @@ public class collisionDetector : MonoBehaviour {
     private int health = 1;
 	public int barrelExperienceValue = 5; 
 
-
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     void OnTriggerEnter(Collider other) {
         health -= 1; 
 
