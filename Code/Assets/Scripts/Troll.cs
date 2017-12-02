@@ -39,31 +39,26 @@ public class Troll : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		distance = Vector3.Distance(troll.position, player.position);
+		Debug.Log("distance: " + distance);
+		Debug.Log("isRetreate: " + aggressive());
 		timer = Time.time - timerStart;
-		if(isRetreat()){
+		if(aggressive()){
 			moveTroll();
-		}
-		else if(distance < 2f){
+		} else if(distance < 20f) {
 			if(brain.shouldAttack()){
 				attack();
-			}
-			else if((timer > 5f)&&(brain.inRange())){
+			} else if((timer > 5f)&&(brain.inRange())) {
 				attack();	
-			}
-			else{
-				if(brain.shouldStepBack()){
+			} else {
+				if(brain.shouldStepBack()) {
 					stepBack();
-				}
-				else{
+				} else {
 					moveTroll();
 				}
 			}
-		}
-		else{
+		} else if (distance > 20f) {
 			idleTroll();
 		}
-
-
     }
 
      void OnTriggerStay(Collider other) {
@@ -87,21 +82,20 @@ public class Troll : MonoBehaviour {
 	void moveTroll(){
 		anim.SetBool("Walk",true);
 		if(aggressive){
-		nav.SetDestination(player.position);
-		}
-		else if(!aggressive){
-		anim.SetBool("Walk", true);
-		moveSpeed = 0.4f;
-		Vector3 newDestination = player.position * -1;
-		nav.SetDestination(newDestination);
-		}
-		else{
+			nav.SetDestination(player.position);
+		} else if(!aggressive) {
+			anim.SetBool("Walk", true);
+			moveSpeed = 0.4f;
+			Vector3 newDestination = player.position * -1;
+			nav.SetDestination(newDestination);
+		} else {
 			idleTroll();
 		}
 	}
 	
 	//force troll stand to stand still
 	void idleTroll(){
+		Debug.Log("idle");
 		anim.SetBool("Walk", false);
 		nav.SetDestination(troll.position);
 	}
@@ -114,7 +108,7 @@ public class Troll : MonoBehaviour {
 		anim.SetBool("Attack",true);
 	}
 	
-	public bool isRetreat(){
+	public bool aggressive(){
 		if(health < 2){
 			aggressive = false;
 		}
