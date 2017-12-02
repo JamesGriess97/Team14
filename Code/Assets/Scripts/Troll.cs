@@ -40,25 +40,30 @@ public class Troll : MonoBehaviour {
 	void Update () {
 		distance = Vector3.Distance(troll.position, player.position);
 		Debug.Log("distance: " + distance);
-		Debug.Log("isRetreate: " + aggressive());
+		Debug.Log("isAggressive: " + isAggressive());
 		timer = Time.time - timerStart;
-		if(aggressive()){
-			moveTroll();
-		} else if(distance < 20f) {
-			if(brain.shouldAttack()){
-				attack();
-			} else if((timer > 5f)&&(brain.inRange())) {
-				attack();	
-			} else {
-				if(brain.shouldStepBack()) {
-					stepBack();
+		if(isAggressive()){
+			if (distance > 15f) {
+				// player too far away, idle
+				idleTroll();
+			} else if(distance > 5f) {
+				// player close, attack
+				if(brain.shouldAttack()){
+					attack();
+				} else if((timer > 5f)&&(brain.inRange())) {
+					attack();	
 				} else {
-					moveTroll();
+					if(brain.shouldStepBack()) {
+						stepBack();
+					} else {
+						moveTroll();
+					}
 				}
+			} else if (distance > 20f) {
+				// player out of range, move towards player
+				moveTroll();
 			}
-		} else if (distance > 20f) {
-			idleTroll();
-		}
+		} 
     }
 
      void OnTriggerStay(Collider other) {
@@ -108,16 +113,15 @@ public class Troll : MonoBehaviour {
 		anim.SetBool("Attack",true);
 	}
 	
-	public bool aggressive(){
+	public bool isAggressive(){
 		if(health < 2){
 			aggressive = false;
-			return true;
+			return false;
 		}
 		else{
 			aggressive = true;
-			return false;
+			return true;
 		}
-		
 	}
 	
 	void stepBack(){
