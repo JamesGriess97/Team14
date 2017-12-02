@@ -454,7 +454,6 @@ GameObject:
   m_Component:
   - component: {fileID: 323975218}
   - component: {fileID: 323975222}
-  - component: {fileID: 323975221}
   - component: {fileID: 323975219}
   - component: {fileID: 323975220}
   m_Layer: 0
@@ -509,19 +508,6 @@ MonoBehaviour:
   startingHealth: 100
   currentHealth: 0
   healthSlider: {fileID: 377556904}
---- !u!136 &323975221
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 323975217}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 1.0381166
-  m_Height: 3.5517557
-  m_Direction: 1
-  m_Center: {x: -0.02801609, y: 0.77587783, z: 0.13074481}
 --- !u!114 &323975222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1411,6 +1397,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 154145466621728900, guid: d99864c6388c8b0489bc7ebbc7cb0698,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d99864c6388c8b0489bc7ebbc7cb0698, type: 2}
   m_IsPrefabParent: 0
@@ -1976,7 +1967,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1481541874}
   m_LocalRotation: {x: 0.000000021855694, y: 0.00000003774895, z: -8.556457e-16, w: 1}
-  m_LocalPosition: {x: 2, y: 1, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}

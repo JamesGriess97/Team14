@@ -14,7 +14,7 @@ public class barrelControllerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Debug.Log(transform.childCount);
-		if(transform.childCount < 100) {
+		if(transform.childCount < 2) {
 			var newBarrel = Instantiate(barrel);
 			newBarrel.transform.parent = gameObject.transform; 
 		}
