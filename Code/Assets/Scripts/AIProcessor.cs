@@ -108,7 +108,7 @@ public class AIProcessor : MonoBehaviour {
     }
 	//return whether or not the player is in range of either attack
 	public bool inRange(){
-		if(distance < .03f){
+		if(distance < 8f){
 			return true;
 		}
 		else{
@@ -116,7 +116,7 @@ public class AIProcessor : MonoBehaviour {
 		}
 	}
 	public bool inPlayerRange(){
-		if(distance < .1f){
+		if(distance < 4f){
 			return true;
 		}
 		else{
