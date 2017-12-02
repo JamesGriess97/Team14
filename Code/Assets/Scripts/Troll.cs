@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class Troll : MonoBehaviour {
     public int health = 5;
 	public Slider healthSlider;
+	public Transform sliderT;
 	PlayerHealth playerHealth;
     public Transform player;
 	public Transform troll;
@@ -40,21 +41,23 @@ public class Troll : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		distance = Vector3.Distance(troll.position, player.position);
-		Debug.Log("distance: " + distance);
-		Debug.Log("isAggressive: " + isAggressive());
+		sliderT.position = troll.position;
+		//Debug.Log("distance: " + distance);
+		//Debug.Log("isAggressive: " + isAggressive());
 		timer = Time.time - timerStart;
+		Debug.Log("trollAttackTimer: " + timer);
 		if(isAggressive()){
-			if (distance > 10f) {
+			if (distance > 100f) {
 				// player too far away, idle
 				idleTroll();
-			} else if (distance < 10f && distance > 5f) {
-				Debug.Log("move");
+			} else if (distance < 100f && distance > 3f) {
+				//Debug.Log("move");
 				// player out of range, move towards player
 				moveTroll();
-			} else if(distance < 5f) {
+			} else if(distance < 3f) {
 				// player close, attack
-				Debug.Log("Attack");
 				if(brain.shouldAttack()){
+					Debug.Log("shouldAttack");
 					attack();
 				} else if((timer > 10f)&&(brain.inRange())) {
 					attack();	

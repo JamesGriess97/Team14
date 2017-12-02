@@ -26,6 +26,8 @@ public class AIProcessor : MonoBehaviour {
 	private float combo2Count;
 	private float attack1Odds;
 	private float attack2Odds;
+	private float lastTrollAttack;
+	private float lastTrollAttackStart;
 	private bool playerInRange;
 	private bool retreat;
 
@@ -42,6 +44,7 @@ public class AIProcessor : MonoBehaviour {
 		attackTimerStart = Time.time;
 		lastAttack1TimerStart = 0;
 		lastAttack2TimerStart = 0;
+		lastTrollAttack = 0;
 	}
 	
 	// Update is called once per frame
@@ -69,6 +72,7 @@ public class AIProcessor : MonoBehaviour {
 		attack1Odds = poissonEstimate(1.0f, attack1Lambda, lastAttack1Timer);
 		attack2Odds = poissonEstimate(1.0f, attack2Lambda, lastAttack2Timer);
 		distance = Vector3.Distance(troll.position, player.position);
+		
 		
 		
 		
@@ -130,12 +134,19 @@ public class AIProcessor : MonoBehaviour {
 				return true;
 			}
 			else{
-				if((attack1Odds < 0.89f)&&(attack2Odds < 0.89f)){
+				//if(lastTrollAttack < 3f){
+					//return false;
+				//}
+				//else{
+				if((attack1Odds < 0.50f)&&(attack2Odds < 0.50f)){
+					//lastTrollAttackStart = Time.time;
 					return true;
 				}
 				else{
 					return false;
 				}
+				//}
+
 			}
 		}
 		else{
