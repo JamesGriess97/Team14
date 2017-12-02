@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arm: {fileID: 1502874997}
-  foot: {fileID: 0}
+  foot: {fileID: 1668467570}
 --- !u!1 &191785158
 GameObject:
   m_ObjectHideFlags: 0
