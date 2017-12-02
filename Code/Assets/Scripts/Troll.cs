@@ -56,7 +56,7 @@ public class Troll : MonoBehaviour {
 				Debug.Log("Attack");
 				if(brain.shouldAttack()){
 					attack();
-				} else if((timer > 5f)&&(brain.inRange())) {
+				} else if((timer > 10f)&&(brain.inRange())) {
 					attack();	
 				} else {
 					if(brain.shouldStepBack()) {
@@ -67,6 +67,9 @@ public class Troll : MonoBehaviour {
 				}
 			}
 		} 
+		else{
+			moveTroll();
+		}
     }
 
      void OnTriggerStay(Collider other) {
@@ -88,6 +91,7 @@ public class Troll : MonoBehaviour {
 	
 	//controls troll movement procedures
 	void moveTroll(){
+		anim.SetBool("Attack",false);
 		anim.SetBool("Walk",true);
 		if(aggressive){
 			nav.SetDestination(player.position);
@@ -105,6 +109,7 @@ public class Troll : MonoBehaviour {
 	void idleTroll(){
 		Debug.Log("idle");
 		anim.SetBool("Walk", false);
+		anim.SetBool("Attack",false);
 		nav.SetDestination(troll.position);
 	}
 	//troll attack procedures
