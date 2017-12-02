@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         if(totalTime >= maxComboDelay) {
-            Debug.Log("no clicks: " + noOfClicks);
+            //Debug.Log("no clicks: " + noOfClicks);
             if (noOfClicks == 1) {
                 noOfClicks = 0;
                 return 1;
