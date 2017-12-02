@@ -1627,7 +1627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrel: {fileID: 1763179774806852, guid: 34865c5205f8ce143bde386d59389494, type: 2}
-  numBarrels: 50
+  numBarrels: 1
 --- !u!4 &1481541876
 Transform:
   m_ObjectHideFlags: 0

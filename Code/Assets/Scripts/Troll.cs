@@ -44,11 +44,16 @@ public class Troll : MonoBehaviour {
 		Debug.Log("isAggressive: " + isAggressive());
 		timer = Time.time - timerStart;
 		if(isAggressive()){
-			if (distance > 15f) {
+			if (distance > 10f) {
 				// player too far away, idle
 				idleTroll();
-			} else if(distance > 5f) {
+			} else if (distance < 10f && distance > 5f) {
+				Debug.Log("move");
+				// player out of range, move towards player
+				moveTroll();
+			} else if(distance < 5f) {
 				// player close, attack
+				Debug.Log("Attack");
 				if(brain.shouldAttack()){
 					attack();
 				} else if((timer > 5f)&&(brain.inRange())) {
@@ -60,9 +65,6 @@ public class Troll : MonoBehaviour {
 						moveTroll();
 					}
 				}
-			} else if (distance > 20f) {
-				// player out of range, move towards player
-				moveTroll();
 			}
 		} 
     }
@@ -88,7 +90,6 @@ public class Troll : MonoBehaviour {
 	void moveTroll(){
 		anim.SetBool("Walk",true);
 		if(aggressive){
-<<<<<<< HEAD
 			nav.SetDestination(player.position);
 		} else if(!aggressive) {
 			anim.SetBool("Walk", true);
@@ -96,21 +97,6 @@ public class Troll : MonoBehaviour {
 			Vector3 newDestination = player.position * -1;
 			nav.SetDestination(newDestination);
 		} else {
-=======
-		nav.SetDestination(player.position);
-		}
-		else if(!aggressive){
-		anim.SetBool("Walk", true);
-		moveSpeed = 0.4f;
-		Vector3 newDestination;
-		newDestination.x = player.position.x * -1;
-		newDestination.y = player.position.y;
-		newDestination.z = player.position.z * -1;
-		
-		nav.SetDestination(newDestination);
-		}
-		else{
->>>>>>> ed66c015ab5be8afc5480fdbc75f0505a954b290
 			idleTroll();
 		}
 	}
