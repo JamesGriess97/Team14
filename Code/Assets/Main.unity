@@ -118,10 +118,8 @@ GameObject:
   - component: {fileID: 29924115}
   - component: {fileID: 29924116}
   - component: {fileID: 29924118}
-  - component: {fileID: 29924117}
-  - component: {fileID: 29924120}
-  - component: {fileID: 29924122}
   - component: {fileID: 29924123}
+  - component: {fileID: 29924117}
   m_Layer: 0
   m_Name: Troll
   m_TagString: Untagged
@@ -171,10 +169,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.083963215
-  m_Height: 0.44241473
+  m_Radius: 6.534195
+  m_Height: 33.80662
   m_Direction: 1
-  m_Center: {x: 0, y: 0.2187926, z: 0.0018678904}
+  m_Center: {x: 0, y: 16.96174, z: -0.75580597}
 --- !u!143 &29924118
 CharacterController:
   m_ObjectHideFlags: 0
@@ -192,33 +190,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.2, z: 0.2}
---- !u!54 &29924120
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 29924114}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: Infinity
-  m_AngularDrag: Infinity
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!135 &29924122
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 29924114}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.18891945
-  m_Center: {x: 0, y: 0.16999097, z: 0.012491775}
 --- !u!195 &29924123
 NavMeshAgent:
   m_ObjectHideFlags: 0
