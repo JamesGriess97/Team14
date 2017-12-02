@@ -111,11 +111,13 @@ public class Troll : MonoBehaviour {
 	public bool aggressive(){
 		if(health < 2){
 			aggressive = false;
+			return true;
 		}
 		else{
 			aggressive = true;
+			return false;
 		}
-		return aggressive;
+		
 	}
 	
 	void stepBack(){
