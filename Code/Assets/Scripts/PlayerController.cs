@@ -113,11 +113,11 @@ public class PlayerController : MonoBehaviour {
     int comboController() {
         // attack animation combos
         // this function could probably use some work
-        if(noOfClicks == 0) {
+
+        if(noOfClicks == 0 && (anim.GetCurrentAnimatorStateInfo(0).IsName("AttackPunch") || anim.GetCurrentAnimatorStateInfo(0).IsName("AttackKick")) ) {
             anim.SetBool("Attack", false);
             anim.SetBool("Kick", false);
         }
-
         if (totalTime == 0 && lastClickedTime == 0) {
             startTime = Time.time;
         }
