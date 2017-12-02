@@ -10,7 +10,7 @@ public class Troll : MonoBehaviour {
 	PlayerHealth playerHealth;
     public Transform player;
 	public Transform troll;
-	private Vector3 distance;
+	private float distance;
 	Animator anim;
     public float gravity = 9.8f;
     private float vSpeed = 0f;
@@ -19,8 +19,9 @@ public class Troll : MonoBehaviour {
 	UnityEngine.AI.NavMeshAgent nav;
 	private float playerAttackTime = 0.5f;
 	float timer =0f;
+	float timerStart;
     private Vector3 posOrig;
-	bool aggressive;
+	bool aggressive = true;
 	bool distanceAttack;
 	AIProcessor brain;
 
@@ -31,12 +32,36 @@ public class Troll : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 		nav = GetComponent <UnityEngine.AI.NavMeshAgent>();
 		anim = GetComponentInChildren<Animator>();
+		timerStart = Time.time;
+		aggressive = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		timer += Time.deltaTime;
-		moveTroll();
+		distance = Vector3.Distance(troll.position, player.position);
+		timer = Time.time - timerStart;
+		if(isRetreat()){
+			moveTroll();
+		}
+		else if(distance < 2f){
+			if(brain.shouldAttack()){
+				attack();
+			}
+			else if((timer > 5f)&&(brain.inRange())){
+				attack();	
+			}
+			else{
+				if(brain.shouldStepBack()){
+					stepBack();
+				}
+				else{
+					moveTroll();
+				}
+			}
+		}
+		else{
+			idleTroll();
+		}
 
 
     }
@@ -62,11 +87,13 @@ public class Troll : MonoBehaviour {
 	void moveTroll(){
 		anim.SetBool("Walk",true);
 		if(aggressive){
-		nav.SetDestination (player.position);
+		nav.SetDestination(player.position);
 		}
 		else if(!aggressive){
 		anim.SetBool("Walk", true);
-		moveSpeed = 0.08f;
+		moveSpeed = 0.4f;
+		Vector3 newDestination = player.position * -1;
+		nav.SetDestination(newDestination);
 		}
 		else{
 			idleTroll();
@@ -76,15 +103,33 @@ public class Troll : MonoBehaviour {
 	//force troll stand to stand still
 	void idleTroll(){
 		anim.SetBool("Walk", false);
+		nav.SetDestination(troll.position);
 	}
 	//troll attack procedures
 	void attack(){
+		timerStart = Time.time;
+		troll.LookAt(player);
+		nav.SetDestination(troll.position);
 		anim.SetBool("Walk", false);
+		anim.SetBool("Attack",true);
 	}
 	
 	public bool isRetreat(){
-		aggressive = false;
+		if(health < 2){
+			aggressive = false;
+		}
+		else{
+			aggressive = true;
+		}
 		return aggressive;
+	}
+	
+	void stepBack(){
+		Vector3 newDestination;
+		newDestination.x = troll.position.x - 5;
+		newDestination.y = troll.position.y;
+		newDestination.z = troll.position.z;
+		nav.SetDestination(newDestination);
 	}
 
 }
