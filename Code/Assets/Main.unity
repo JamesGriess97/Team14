@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -154,7 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   healthSlider: {fileID: 1311129133}
-  player: {fileID: 0}
+  sliderT: {fileID: 1311129132}
+  player: {fileID: 1049531083}
   troll: {fileID: 29924115}
   gravity: 9.8
   moveSpeed: 0.1
@@ -169,10 +170,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 6.534195
+  m_Radius: 13.351207
   m_Height: 33.80662
   m_Direction: 1
-  m_Center: {x: 0, y: 16.96174, z: -0.75580597}
+  m_Center: {x: 0.40503025, y: 16.96174, z: -0.75580597}
 --- !u!143 &29924118
 CharacterController:
   m_ObjectHideFlags: 0
@@ -369,7 +370,7 @@ RectTransform:
   m_GameObject: {fileID: 377556902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children:
   - {fileID: 573623408}
   - {fileID: 1434910632}
@@ -1025,6 +1026,11 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!4 &1049531083 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4390966683319350, guid: 2d5e81a4f96283d4584272a6c6d0a889,
+    type: 2}
+  m_PrefabInternal: {fileID: 2005293319}
 --- !u!1001 &1084769824
 Prefab:
   m_ObjectHideFlags: 0
@@ -1397,7 +1403,7 @@ RectTransform:
   m_GameObject: {fileID: 1311129131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children:
   - {fileID: 632947265}
   - {fileID: 1345838348}
@@ -1622,7 +1628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrel: {fileID: 1763179774806852, guid: 34865c5205f8ce143bde386d59389494, type: 2}
-  numBarrels: 50
+  numBarrels: 1
 --- !u!4 &1481541876
 Transform:
   m_ObjectHideFlags: 0
@@ -1701,8 +1707,8 @@ Canvas:
   m_GameObject: {fileID: 1545319299}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 2
+  m_Camera: {fileID: 1796775373}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1721,7 +1727,7 @@ RectTransform:
   m_GameObject: {fileID: 1545319299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 377556903}
   - {fileID: 1311129132}
@@ -1737,9 +1743,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 353, y: 181.5}
+  m_SizeDelta: {x: 706, y: 363}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1545319304
 Animator:
   serializedVersion: 3
@@ -1984,6 +1990,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1782553700}
+--- !u!20 &1796775373 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20070513777236608, guid: 2d5e81a4f96283d4584272a6c6d0a889,
+    type: 2}
+  m_PrefabInternal: {fileID: 2005293319}
 --- !u!1 &1821584736
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,6 +2265,11 @@ Prefab:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 377556904}
+    - target: {fileID: 114471629735795856, guid: 2d5e81a4f96283d4584272a6c6d0a889,
+        type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 377556903}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d5e81a4f96283d4584272a6c6d0a889, type: 2}
   m_IsPrefabParent: 0
@@ -2339,6 +2355,20 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0

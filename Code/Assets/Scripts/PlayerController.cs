@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour {
 
     public Transform playerCam, character, centerPoint;
     private Rigidbody rb;
+	public Transform healthSlider;
 
     private float mouseX, mouseY;
     public float mouseSensitivity = 10f;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+		healthSlider.position = character.position;
         // jump animation
         if(character.GetComponent<CharacterController>().isGrounded) {
             vSpeed = 0f;
