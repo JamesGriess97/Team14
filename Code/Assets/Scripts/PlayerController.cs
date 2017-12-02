@@ -104,7 +104,6 @@ public class PlayerController : MonoBehaviour {
         // walk animation
         if(vert + horiz != 0) {
             float speed = Mathf.Clamp((vert + horiz)/2 * 3, .6f, 1.5f);
-            Debug.Log("vert: " + speed);
             anim.SetFloat("Speed", speed);
         } else {
             anim.SetFloat("Speed", 0);

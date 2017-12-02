@@ -20,7 +20,7 @@ public class Troll : MonoBehaviour {
 	private float playerAttackTime = 0.5f;
 	float timer =0f;
     private Vector3 posOrig;
-	bool aggressive;
+	bool aggressive = true;
 	bool distanceAttack;
 	AIProcessor brain;
 
