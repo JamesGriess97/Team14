@@ -123,5 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5c72ddae79abc4491439c6596323ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSlider: {fileID: 0}
   barrelExperienceValue: 5

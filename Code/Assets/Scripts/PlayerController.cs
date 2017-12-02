@@ -104,7 +104,6 @@ public class PlayerController : MonoBehaviour {
         // walk animation
         if(vert + horiz != 0) {
             float speed = Mathf.Clamp((vert + horiz)/2 * 3, .6f, 1.5f);
-            Debug.Log("vert: " + speed);
             anim.SetFloat("Speed", speed);
         } else {
             anim.SetFloat("Speed", 0);
@@ -114,11 +113,11 @@ public class PlayerController : MonoBehaviour {
     int comboController() {
         // attack animation combos
         // this function could probably use some work
-        if(noOfClicks == 0) {
+
+        if(noOfClicks == 0 && (anim.GetCurrentAnimatorStateInfo(0).IsName("AttackPunch") || anim.GetCurrentAnimatorStateInfo(0).IsName("AttackKick")) ) {
             anim.SetBool("Attack", false);
             anim.SetBool("Kick", false);
         }
-
         if (totalTime == 0 && lastClickedTime == 0) {
             startTime = Time.time;
         }
@@ -132,7 +131,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         if(totalTime >= maxComboDelay) {
-            Debug.Log("no clicks: " + noOfClicks);
+            //Debug.Log("no clicks: " + noOfClicks);
             if (noOfClicks == 1) {
                 noOfClicks = 0;
                 return 1;
