@@ -34,12 +34,16 @@ public class PlayerHealth : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		damaged = true;
-		currentHealth -= 10;
-		healthSlider.value = currentHealth;
-		if (currentHealth <= 0) {
-			//Destroy (gameObject);
-			anim.SetBool("GameOver", true);
-		}
+		//if(!anim.GetCurrentAnimatorStateInfo(0).IsName("AttackPunch") && !anim.GetCurrentAnimatorStateInfo(0).IsName("AttackKick")) {
+		Debug.Log("hit");
+			damaged = true;
+			currentHealth -= 10;
+			healthSlider.value = currentHealth;
+			if (currentHealth <= 0) {
+				//Destroy (gameObject);
+				anim.SetBool("GameOver", true);
+			}
+			
+		//}
 	}
 }

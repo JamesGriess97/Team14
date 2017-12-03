@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrel: {fileID: 1763179774806852, guid: 34865c5205f8ce143bde386d59389494, type: 2}
-  numBarrels: 0
+  numBarrels: 100
 --- !u!4 &1481541876
 Transform:
   m_ObjectHideFlags: 0
@@ -1869,11 +1869,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114021815377700876, guid: 2d5e81a4f96283d4584272a6c6d0a889,
-        type: 2}
-      propertyPath: healthSlider
-      value: 
-      objectReference: {fileID: 377556904}
     - target: {fileID: 114471629735795856, guid: 2d5e81a4f96283d4584272a6c6d0a889,
         type: 2}
       propertyPath: healthSlider
@@ -1881,8 +1876,13 @@ Prefab:
       objectReference: {fileID: 377556903}
     - target: {fileID: 114021815377700876, guid: 2d5e81a4f96283d4584272a6c6d0a889,
         type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 377556904}
+    - target: {fileID: 114021815377700876, guid: 2d5e81a4f96283d4584272a6c6d0a889,
+        type: 2}
       propertyPath: startingHealth
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d5e81a4f96283d4584272a6c6d0a889, type: 2}
