@@ -34,8 +34,7 @@ public class PlayerHealth : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		//if(!anim.GetCurrentAnimatorStateInfo(0).IsName("AttackPunch") && !anim.GetCurrentAnimatorStateInfo(0).IsName("AttackKick")) {
-		Debug.Log("hit");
+		if(other.name != "R_wrist") {
 			damaged = true;
 			currentHealth -= 10;
 			healthSlider.value = currentHealth;
@@ -44,6 +43,7 @@ public class PlayerHealth : MonoBehaviour {
 				anim.SetBool("GameOver", true);
 			}
 			
-		//}
+		}
+
 	}
 }

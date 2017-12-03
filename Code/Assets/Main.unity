@@ -157,12 +157,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380de455791c60946a09ef01aed5dcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 5
   healthSlider: {fileID: 1311129133}
   sliderT: {fileID: 1311129132}
   player: {fileID: 1049531083}
   troll: {fileID: 29924115}
-  moveSpeed: 0.1
+  moveSpeed: 0.2
   trollExperienceValue: 10
 --- !u!136 &29924117
 CapsuleCollider:
@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrel: {fileID: 1763179774806852, guid: 34865c5205f8ce143bde386d59389494, type: 2}
-  numBarrels: 100
+  numBarrels: 10
 --- !u!4 &1481541876
 Transform:
   m_ObjectHideFlags: 0
