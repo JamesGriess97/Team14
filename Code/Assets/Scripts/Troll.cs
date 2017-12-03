@@ -8,25 +8,19 @@ public class Troll : MonoBehaviour {
     public int health = 5;
 	public Slider healthSlider;
 	public Transform sliderT;
-	PlayerHealth playerHealth;
     public Transform player;
 	public Transform troll;
-	private float distance;
-	Animator anim;
-    public float gravity = 9.8f;
-    private float vSpeed = 0f;
 	public float moveSpeed = .2f;
-    public float rotationSpeed = 5f;
-	UnityEngine.AI.NavMeshAgent nav;
-	private float playerAttackTime = 0.5f;
-	float timer =0f;
-	float timerStart;
-    private Vector3 posOrig;
-	bool aggressive = true;
-	bool distanceAttack;
-	AIProcessor brain;
-
 	public int trollExperienceValue = 10; 
+
+	private float distance;
+	float timer = 0f;
+	float timerStart;
+
+	Animator anim;
+	AIProcessor brain;
+	UnityEngine.AI.NavMeshAgent nav;
+
 
 	// Use this for initialization
 	void Start () {
@@ -34,7 +28,6 @@ public class Troll : MonoBehaviour {
 		nav = GetComponent <UnityEngine.AI.NavMeshAgent>();
 		anim = GetComponentInChildren<Animator>();
 		timerStart = Time.time;
-		aggressive = true;
 		brain = new AIProcessor();
 	}
 	
@@ -42,22 +35,17 @@ public class Troll : MonoBehaviour {
 	void Update () {
 		distance = Vector3.Distance(troll.position, player.position);
 		sliderT.position = troll.position;
-		//Debug.Log("distance: " + distance);
-		//Debug.Log("isAggressive: " + isAggressive());
 		timer = Time.time - timerStart;
-		Debug.Log("trollAttackTimer: " + timer);
 		if(isAggressive()){
 			if (distance > 100f) {
 				// player too far away, idle
 				idleTroll();
 			} else if (distance < 100f && distance > 3f) {
-				//Debug.Log("move");
 				// player out of range, move towards player
 				moveTroll();
 			} else if(distance < 3f) {
 				// player close, attack
 				if(brain.shouldAttack()){
-					Debug.Log("shouldAttack");
 					attack();
 				} else if((timer > 10f)&&(brain.inRange())) {
 					attack();	
@@ -75,30 +63,23 @@ public class Troll : MonoBehaviour {
 		}
     }
 
-     void OnTriggerStay(Collider other) {
-		
-        Debug.Log("collision");
-		if (Input.GetMouseButtonDown(0)&& timer >= playerAttackTime) {
-			timer = 0f;
-			health -= 1;
-		} 
-			
-		healthSlider.value = health;
+	void OnTriggerEnter(Collider other) {
+		health -= 1; 
 	
-        
         if (health == 0) {
-            Destroy(gameObject);
 			experienceManager.experience += trollExperienceValue;
+            Destroy(gameObject);
         }
+		healthSlider.value = health;
     } 
 	
 	//controls troll movement procedures
 	void moveTroll(){
 		anim.SetBool("Attack",false);
 		anim.SetBool("Walk",true);
-		if(aggressive){
+		if(isAggressive()){
 			nav.SetDestination(player.position);
-		} else if(!aggressive) {
+		} else if(!isAggressive()) {
 			anim.SetBool("Walk", true);
 			moveSpeed = 0.4f;
 			Vector3 newDestination = player.position * -1;
@@ -108,14 +89,15 @@ public class Troll : MonoBehaviour {
 		}
 	}
 	
-	//force troll stand to stand still
+	// sets troll to idle state
 	void idleTroll(){
 		Debug.Log("idle");
 		anim.SetBool("Walk", false);
 		anim.SetBool("Attack",false);
 		nav.SetDestination(troll.position);
 	}
-	//troll attack procedures
+
+	// initiates the troll attack animation
 	void attack(){
 		timerStart = Time.time;
 		troll.LookAt(player);
@@ -124,13 +106,11 @@ public class Troll : MonoBehaviour {
 		anim.SetBool("Attack",true);
 	}
 	
+	// returns whether or not the troll should be aggressive or not
 	public bool isAggressive(){
 		if(health < 2){
-			aggressive = false;
 			return false;
-		}
-		else{
-			aggressive = true;
+		} else {
 			return true;
 		}
 	}
