@@ -37,10 +37,10 @@ public class Troll : MonoBehaviour {
 		sliderT.position = troll.position;
 		timer = Time.time - timerStart;
 		if(isAggressive()){
-			if (distance > 100f) {
+			if (distance > 30f) {
 				// player too far away, idle
 				idleTroll();
-			} else if (distance < 100f && distance > 3f) {
+			} else if (distance < 30f && distance > 3f) {
 				// player out of range, move towards player
 				moveTroll();
 			} else if(distance < 3f) {
@@ -57,8 +57,7 @@ public class Troll : MonoBehaviour {
 					}
 				}
 			}
-		} 
-		else{
+		} else{
 			moveTroll();
 		}
     }
@@ -78,8 +77,10 @@ public class Troll : MonoBehaviour {
 		anim.SetBool("Attack",false);
 		anim.SetBool("Walk",true);
 		if(isAggressive()){
+			// run towards the player
 			nav.SetDestination(player.position);
 		} else if(!isAggressive()) {
+			// run away from the player
 			anim.SetBool("Walk", true);
 			moveSpeed = 0.4f;
 			Vector3 newDestination = player.position * -1;
