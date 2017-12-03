@@ -7,16 +7,13 @@ public class barrelControllerScript : MonoBehaviour {
 	public GameObject barrel;
 	public int numBarrels = 1;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
 		//Debug.Log(transform.childCount);
 		if(transform.childCount < numBarrels) {
-			var newBarrel = Instantiate(barrel);
+			Vector3 position = new Vector3(Random.Range(-100.0F, 100.0F), Random.Range(-100.0F, 100.0F), Random.Range(-100.0F, 100.0F));
+			var newBarrel = Instantiate(barrel, position, Quaternion.identity);
 			newBarrel.transform.parent = gameObject.transform; 
 		}
 	}
