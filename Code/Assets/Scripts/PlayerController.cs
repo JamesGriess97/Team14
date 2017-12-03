@@ -60,9 +60,9 @@ public class PlayerController : MonoBehaviour {
         mouseX += Input.GetAxis("Mouse X");
         mouseY -= Input.GetAxis("Mouse Y");
         mouseX += (lookSpeed * Input.GetAxis("X360_RStickX"));
-        mouseY -= (lookSpeed * Input.GetAxis("X360_RStickY"));
+        mouseY += (lookSpeed * Input.GetAxis("X360_RStickY"));
 
-        mouseY = Mathf.Clamp(mouseY, 10, 60f);
+        mouseY = Mathf.Clamp(mouseY, 0, 60f);
 
         playerCam.LookAt(centerPoint);
         centerPoint.localRotation = Quaternion.Euler(mouseY, mouseX, 0);
