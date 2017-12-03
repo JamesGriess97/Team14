@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator> ();
+        anim = GetComponentInChildren<Animator>();
 		playerMovement = GetComponent<PlayerController> ();
 		currentHealth = startingHealth;
 	}
@@ -33,13 +33,13 @@ public class PlayerHealth : MonoBehaviour {
 		}
 	}
 
-	public void TakeDamage(float amount){
+	void OnTriggerEnter(Collider other) {
 		damaged = true;
-		currentHealth -= amount;
+		currentHealth -= 10;
 		healthSlider.value = currentHealth;
-		if (currentHealth <= 0 && !isDead) {
+		if (currentHealth <= 0) {
 			//Destroy (gameObject);
-			//anim.SetTrigger ("GameOver");
+			anim.SetBool("GameOver", true);
 		}
 	}
 }

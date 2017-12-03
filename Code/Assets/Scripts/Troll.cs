@@ -63,13 +63,16 @@ public class Troll : MonoBehaviour {
     }
 
 	void OnTriggerEnter(Collider other) {
-		health -= 1; 
-	
-        if (health == 0) {
-			experienceManager.experience += trollExperienceValue;
-            Destroy(gameObject);
-        }
-		healthSlider.value = health;
+		if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) {
+			Debug.Log("onTriggerEnter");
+			health -= 1; 
+		
+			if (health == 0) {
+				experienceManager.experience += trollExperienceValue;
+				Destroy(gameObject);
+			}
+			healthSlider.value = health;
+		}
     } 
 	
 	//controls troll movement procedures
