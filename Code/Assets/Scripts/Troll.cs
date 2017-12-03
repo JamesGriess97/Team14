@@ -50,7 +50,6 @@ public class Troll : MonoBehaviour {
 			if (distance > 100f) {
 				// player too far away, idle
 				idleTroll();
-
 			} else if (distance < 100f && distance > 3f) {
 				//Debug.Log("move");
 				// player out of range, move towards player
@@ -76,16 +75,21 @@ public class Troll : MonoBehaviour {
 		}
     }
 
-     void onTriggerEnter(Collider other) {
+     void OnTriggerStay(Collider other) {
+		
         Debug.Log("collision");
-		health -= 1; 
-
-        if (health == 0) {
-			experienceManager.experience += trollExperienceValue;
-            Destroy(gameObject);
-        }
-
+		if (Input.GetMouseButtonDown(0)&& timer >= playerAttackTime) {
+			timer = 0f;
+			health -= 1;
+		} 
+			
 		healthSlider.value = health;
+	
+        
+        if (health == 0) {
+            Destroy(gameObject);
+			experienceManager.experience += trollExperienceValue;
+        }
     } 
 	
 	//controls troll movement procedures
@@ -106,6 +110,7 @@ public class Troll : MonoBehaviour {
 	
 	//force troll stand to stand still
 	void idleTroll(){
+		Debug.Log("idle");
 		anim.SetBool("Walk", false);
 		anim.SetBool("Attack",false);
 		nav.SetDestination(troll.position);
