@@ -23,6 +23,11 @@ public class buttonManager : MonoBehaviour {
         Debug.Log("You have clicked the button!");
     }
 
+	public void LoadByIndex(string sceneIndex)
+	{
+		SceneManager.LoadScene (sceneIndex);
+	}
+
 	void quitClick() {
 		Debug.Log("exit");
         //Application.Quit();
