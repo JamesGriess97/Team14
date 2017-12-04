@@ -39,5 +39,8 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
-Code/.vs/Code/v15/sqlite3/storage.ide
-Code/.vs/Code/v15/sqlite3/storage.ide
+*.ide
+*.ide-wal
+Code/.vs/Code/v15/sqlite3/*.ide
+Code/.vs/Code/v15/sqlite3/*.ide-shm
+Code/.vs/Code/v15/sqlite3/*.ide-wal
